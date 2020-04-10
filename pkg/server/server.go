@@ -1,10 +1,13 @@
 package server
 
 import (
-	"net/http"
+	"github.com/gorilla/mux"
 	"os"
 	"log"
+	"net/http"
 )
+
+var dataDir = "/data"
 
 func Serve() error{
 	var port = "6666"
@@ -12,14 +15,15 @@ func Serve() error{
 	if portEnv != ""{
 		port = portEnv
 	}
-	var dataDir = "/data"
 	dataDirEnv := os.Getenv("DATA_DIR")
 	if dataDirEnv != ""{
 		dataDir = dataDirEnv
 	}
 	log.Println("DataDir:", dataDir)
-	http.HandleFunc("/version", version)
+	r := mux.NewRouter()
+	r.HandleFunc("/version", versionHandler)
+	r.HandleFunc("/upload/{filename}", uploadHandler)
 	log.Println("Starting HTTP server on port", port)
-	http.ListenAndServe(":"+port, nil)
+	http.ListenAndServe(":"+port, r)
 	return nil
 }
