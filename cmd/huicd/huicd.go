@@ -5,6 +5,7 @@ import (
 	"github.com/loqutus/huicd/pkg/client"
 )
 
+var mode string
 	
 func main() {
 	argsWithoutProg := os.Args[1:]
@@ -17,8 +18,8 @@ func main() {
 		if err != nil{
 			panic(err.Error())
 		}
-	} else if mode == "client"{
-		err := client.Client()
+	} else if mode == "upload" || mode == "download"{
+		err := client.Client(argsWithoutProg)
 		if err != nil{
 			panic(err.Error())
 		}
