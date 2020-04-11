@@ -8,9 +8,9 @@ import (
 )
 
 var dataDir = "/data"
+var port = "6969"
 
 func Serve() error{
-	var port = "6666"
 	portEnv := os.Getenv("PORT")
 	if portEnv != ""{
 		port = portEnv

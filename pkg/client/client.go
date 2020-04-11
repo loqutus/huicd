@@ -6,7 +6,7 @@ import (
 )
 
 var host = "127.0.0.1"
-var port = "6666"
+var port = "6969"
 
 func Client(args []string) error{
 	hostEnv := os.Getenv("HOST")
