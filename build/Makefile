@@ -1,15 +1,12 @@
-GOCMD=go
-GOBUILD=$(GOCMD) build
-GOTEST=$(GOCMD) test
-GOVET=$(GOCMD) vet 
-BINARY_NAME=huicd
-    
 all: test build
 build: 
-	$(GOVET) ../cmd/huicd
-	$(GOBUILD) -o $(BINARY_NAME) -v ../cmd/huicd
+	go ver ../cmd/huicd
+	go build -o huicd -v ../cmd/huicd
 test: 
-	$(GOTEST) ../cmd/huicd
+	go test ../cmd/huicd
 run:
-	$(GOBUILD) -o $(BINARY_NAME) -v ../cmd/huicd
-	DATA_DIR=/tmp ./$(BINARY_NAME) server
+	go build -o huicd -v ../cmd/huicd
+	DATA_DIR=/tmp ./huicd server
+docker:
+	docker build . -t loqutus/huicd
+	docker push loqutus/huicd
