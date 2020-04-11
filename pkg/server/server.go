@@ -23,6 +23,7 @@ func Serve() error{
 	r := mux.NewRouter()
 	r.HandleFunc("/version", versionHandler)
 	r.HandleFunc("/upload/{filename}", uploadHandler)
+	r.HandleFunc("/download/{filename}", downloadHandler)
 	log.Println("Starting HTTP server on port", port)
 	http.ListenAndServe(":"+port, r)
 	return nil

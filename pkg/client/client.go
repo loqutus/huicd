@@ -22,7 +22,11 @@ func Client(args []string) error{
 	}
 	action := args[0]
 	if action == "upload"{
-		Upload(args[1])
+		err := Upload(args[1])
+		return err
+	} else if action == "download"{
+		err := Download(args[1])
+		return err
 	} else {
 		return errors.New("unknown client action: " + args[0])
 	}
