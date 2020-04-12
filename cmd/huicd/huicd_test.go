@@ -6,7 +6,6 @@ import (
 	"github.com/loqutus/huicd/pkg/server"
 	"github.com/loqutus/huicd/pkg/client"
 	"time"
-	"fmt"
 )
 
 func TestMain(t *testing.T){
@@ -14,7 +13,6 @@ func TestMain(t *testing.T){
 	if err != nil{
 		t.Errorf(err.Error())
 	}
-	fmt.Println(path)
 	if err := os.Setenv("DATA_DIR", "/tmp"); err != nil{
 		t.Errorf(err.Error())
 	}
